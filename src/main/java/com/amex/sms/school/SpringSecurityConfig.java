@@ -1,3 +1,4 @@
+/*
 package com.amex.sms.school;
 
 import org.springframework.context.annotation.Bean;
@@ -15,12 +16,14 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 
+*/
 /**
  * @author Mayukha
  * Created on 03 Nov, 2023
  * @project school
- */
-@Configuration
+ *//*
+
+//@Configuration
 public class SpringSecurityConfig {
 
     @Bean
@@ -45,3 +48,4 @@ public class SpringSecurityConfig {
     }
 
 }
+*/

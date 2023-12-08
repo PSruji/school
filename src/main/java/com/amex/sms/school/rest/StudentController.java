@@ -22,7 +22,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -116,7 +115,7 @@ public class StudentController {
         //return studentService.create(student);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+   // @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/students/{id}")
     public Student update(@PathVariable("id") int id, @RequestBody Student student){
         logger.info("UPDATE request received for id "+id);
@@ -125,7 +124,7 @@ public class StudentController {
     }
 
     @Operation(summary = "Delete a Student Record")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping(value = "/students/{id}", produces={MediaType.APPLICATION_JSON_VALUE})
     //@ResponseStatus(value = HttpStatus.NO_CONTENT)
     public String delete(@PathVariable("id") int id){
