@@ -72,4 +72,12 @@ public class Student {
     @Column(name="phone")
     private String phone;
 
+
+    @Transient
+    @NotBlank(message = "DOB shouldn't be blank")
+    private String dobStr;
+    @Transient
+    @NotBlank(message = "DOJ shouldn't be blank")
+    private String dojStr;
+
 }

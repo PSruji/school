@@ -1,5 +1,6 @@
 package com.amex.sms.school.config;
 
+import com.amex.sms.school.exceptions.BadRequestException;
 import com.amex.sms.school.student.entity.Student;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  * @author Mayukha
@@ -21,6 +24,7 @@ public class StudentSerializer extends JsonSerializer<Student> {
     @Override
     public void serialize(Student student, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeStartObject();
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-mm-dd");
         if(CollectionUtils.isEmpty(student.getFields())) {
             jsonGenerator.writeNumberField("id", student.getId());
             jsonGenerator.writeStringField("fname", student.getFname());
@@ -29,8 +33,20 @@ public class StudentSerializer extends JsonSerializer<Student> {
             jsonGenerator.writeStringField("phone", student.getPhone());
             jsonGenerator.writeStringField("email", student.getEmail());
             jsonGenerator.writeNumberField("grade", student.getGrade());
-            jsonGenerator.writeObjectField("dob", student.getDob());
-            jsonGenerator.writeObjectField("doj", student.getDoj());
+
+            try {
+                jsonGenerator.writeStringField("doj",simpleDateFormat.format(student.getDoj()));
+            } catch (Exception e) {
+                jsonGenerator.writeStringField("doj",null);
+            }
+
+            try {
+                jsonGenerator.writeStringField("dob",simpleDateFormat.format(student.getDob()));
+            } catch (Exception e) {
+                jsonGenerator.writeStringField("dob",null);
+            }
+
+
 
         } else{
             for (String field : student.getFields()){
@@ -51,10 +67,18 @@ public class StudentSerializer extends JsonSerializer<Student> {
                             jsonGenerator.writeStringField("email", student.getEmail());
                             break;
                         case "dob" :
-                            jsonGenerator.writeObjectField("dob", student.getDob());
+                            try {
+                                jsonGenerator.writeStringField("dob",simpleDateFormat.format(student.getDob()));
+                            } catch (Exception e) {
+                                jsonGenerator.writeStringField("dob",null);
+                            }
                             break;
                         case "doj" :
-                            jsonGenerator.writeObjectField("doj", student.getDoj());
+                            try {
+                                jsonGenerator.writeStringField("doj",simpleDateFormat.format(student.getDoj()));
+                            } catch (Exception e) {
+                                jsonGenerator.writeStringField("doj",null);
+                            }
                             break;
                         case "grade":
                             jsonGenerator.writeNumberField("grade", student.getGrade());
