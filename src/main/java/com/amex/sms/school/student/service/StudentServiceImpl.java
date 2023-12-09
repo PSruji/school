@@ -44,7 +44,7 @@ public class StudentServiceImpl implements StudentService {
                 case "email" :
                     return studentRepository.findAllByOrderByEmailAsc();
                 case "name" :
-                    return studentRepository.findAllByOrderByNameAsc();
+                    return studentRepository.findAllByOrderByFnameAsc();
                 default:
                     return studentRepository.findAllByOrderByIdAsc();
             }
@@ -54,7 +54,7 @@ public class StudentServiceImpl implements StudentService {
                 case "email":
                     return studentRepository.findAllByOrderByEmailDesc();
                 case "name":
-                    return studentRepository.findAllByOrderByNameDesc();
+                    return studentRepository.findAllByOrderByFnameDesc();
                 default:
                     return studentRepository.findAllByOrderByIdDesc();
             }
@@ -75,11 +75,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student create(Student student){
-        if(!studentRepository.existsById(student.getId())) {
+       /* if(!studentRepository.existsById(student.getId())) {
             return studentRepository.save(student);
 
         }
-        throw new RecordAlreadyExistException("Record with id Already Exist");
+        throw new RecordAlreadyExistException("Record with id Already Exist");*/
+        return studentRepository.save(student);
     }
 
     public Student update(int id, Student student) {
