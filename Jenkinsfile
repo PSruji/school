@@ -31,8 +31,8 @@ try{
     }
     stage('Deploy docker'){
           echo "Docker Image Tag Name: ${dockerImageTag}"
-          sh "docker stop school-app || true && docker rm school-app || true"
-          sh "docker run --name school-app -d -p 8080:8080 school-app:${env.BUILD_NUMBER}"
+          bat "docker stop school-app || true && docker rm school-app || true"
+          bat "docker run --name school-app -d -p 8080:8080 school-app:${env.BUILD_NUMBER}"
     }
 }catch(e){
     currentBuild.result = "FAILED"
