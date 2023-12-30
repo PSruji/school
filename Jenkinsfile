@@ -15,7 +15,7 @@
 } */
 
 node {
-    def WORKSPACE = "/var/lib/jenkins/workspace/school-app"
+    def WORKSPACE = "/ProgramData/Jenkins/.jenkins/workspace/school"
     def dockerImageTag = "school-app${env.BUILD_NUMBER}"
 try{
     notifyBuild('STARTED')
