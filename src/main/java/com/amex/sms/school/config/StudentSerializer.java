@@ -24,7 +24,7 @@ public class StudentSerializer extends JsonSerializer<Student> {
     @Override
     public void serialize(Student student, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeStartObject();
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
         if(CollectionUtils.isEmpty(student.getFields())) {
             jsonGenerator.writeNumberField("id", student.getId());
             jsonGenerator.writeStringField("fname", student.getFname());

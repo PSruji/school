@@ -28,6 +28,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins ="*")
 
 public class StudentController {
 
@@ -53,9 +54,9 @@ public class StudentController {
                                               @RequestParam(value="pageSize", required = false, defaultValue = "10") Integer pageSize,
                                               @RequestParam(value="sort", required = false, defaultValue = "id") String sort){
         logger.info("GET All Request received");
-        if(pageNumber > 0){
+        /*if(pageNumber > 0){
             pageNumber = pageNumber - 1;
-        }
+        }*/
 
         return studentService.getStudentPagination(pageNumber, pageSize, sort, email);
     }
@@ -113,7 +114,7 @@ public class StudentController {
         public ResponseEntity<Student> create(@RequestBody @Valid Student student, HttpServletResponse httpServletResponse){
         logger.info("CREATE request received");
         logger.info(student.toString());
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
         try {
             student.setDob(simpleDateFormat.parse(student.getDobStr()));
         } catch (ParseException e) {
@@ -138,8 +139,20 @@ public class StudentController {
     @PutMapping("/students/{id}")
     public Student update(@PathVariable("id") int id, @RequestBody Student student){
         logger.info("UPDATE request received for id "+id);
-
         logger.info(student.toString());
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-mm-dd");
+        try {
+            student.setDob(simpleDateFormat.parse(student.getDobStr()));
+        } catch (ParseException e) {
+            logger.info("Invalid DOBStr ->"+student.getDobStr());
+            throw new BadRequestException("Date Format Should be YYYY-MM-DD");
+        }
+        try {
+            student.setDoj(simpleDateFormat.parse(student.getDojStr()));
+        } catch (ParseException e) {
+            logger.info("Invalid DOJStr ->"+student.getDojStr());
+            throw new BadRequestException("Date Format Should be YYYY-MM-DD");
+        }
         return studentService.update(id, student);
     }
 

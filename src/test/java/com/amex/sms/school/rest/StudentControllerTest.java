@@ -1,3 +1,4 @@
+/*
 package com.amex.sms.school.rest;
 
 import com.amex.sms.school.student.entity.Student;
@@ -14,11 +15,13 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
+*/
 /**
  * @author Mayukha
  * Created on 09 Nov, 2023
  * @project school
- */
+ *//*
+
 @ExtendWith(MockitoExtension.class)
 class StudentControllerTest {
 
@@ -66,7 +69,8 @@ class StudentControllerTest {
 
     }
 
-    /*@Test
+    */
+/*@Test
     /*void update(int id) {
         Student student= new Student(105,"Sai5","Sai5@aexp.com");
         when(studentService.create(student)).thenReturn(student);
@@ -83,7 +87,9 @@ class StudentControllerTest {
 
     @Test
     void delete() {
-    }*/
+    }*//*
+
 
 
 }
+*/

@@ -51,7 +51,7 @@ public class Student {
 
     @Column(name="email")
     @Email(message = "Email format is not valid")
-    @AmexEmail(message = "Email id should end with @axp.com" )
+    //@AmexEmail(message = "Email id should end with @axp.com" )
     @Schema(name = "email", description = "Email id of the student with max of 255 characters and should end with @aexp.com", example = "sateesh.gullipalli@aexp.com")
     private String email;
 
@@ -74,10 +74,10 @@ public class Student {
 
 
     @Transient
-    @NotBlank(message = "DOB shouldn't be blank")
+    //@NotBlank(message = "DOB shouldn't be blank")
     private String dobStr;
     @Transient
-    @NotBlank(message = "DOJ shouldn't be blank")
+    //@NotBlank(message = "DOJ shouldn't be blank")
     private String dojStr;
 
 }

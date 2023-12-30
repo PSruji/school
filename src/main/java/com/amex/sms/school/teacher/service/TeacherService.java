@@ -34,11 +34,9 @@ public class TeacherService {
     }
 
     public Teacher create(Teacher teacher){
-        if(!teacherRepository.existsById(teacher.getId())) {
+
             return teacherRepository.save(teacher);
 
-        }
-        return null;
     }
 
     public Teacher update(int id, Teacher teacher) {

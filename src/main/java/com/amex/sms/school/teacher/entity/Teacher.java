@@ -1,13 +1,13 @@
 package com.amex.sms.school.teacher.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import com.amex.sms.school.validators.AmexEmail;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
+
+import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,25 +16,63 @@ import lombok.*;
 @ToString
 @Entity
 @Table(name = "teacher")
-
 public class Teacher {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="tid")
-    private int Id;
+    @Schema(name= "id",  description = "ID of the Teacher which is unique", example = "0")
+    private int id;
 
-    @Column(name="name")
-    @NotBlank(message = "Teacher name is required")
-    @Size( max = 15, message = "Teacher name should not be more than 15 Characters")
-    private String Name;
-
-    @Column(name="mail")
-    @NotBlank(message = "Email id is required")
-    @Email(message = "Email format is not valid")
-    @Size( max = 25, message = "Teacher email-id should not be more than 15 Characters")
-    private String mail;
 
     @Column(name="subject")
     private String subject;
+
+
+    @Column(name="fname")
+    @NotBlank(message = "Teacher Firstname is required")
+    @Schema(name ="first name", description = "Full name of the Teacher with max of 255 characters", example = "sateesh gullipalli")
+    private String fname;
+
+
+    @Column(name="mname")
+    @Schema(name ="middle name", description = "Full name of the Teacher with max of 255 characters", example = "sateesh gullipalli")
+    private String mname;
+
+    @Column(name="lname")
+    @NotBlank(message = "Teacher Lastname is required")
+    @Schema(name ="last name", description = "Full name of the Teacher with max of 255 characters", example = "sateesh gullipalli")
+    private String lname;
+
+    @Column(name="email")
+    @Email(message = "Email format is not valid")
+    //@AmexEmail(message = "Email id should end with @axp.com" )
+    @Schema(name = "email", description = "Email id of the Teacher with max of 255 characters and should end with @aexp.com", example = "sateesh.gullipalli@aexp.com")
+    private String email;
+
+    @Transient
+    private List<String> fields;
+
+    @Column(name="dob")
+    private Date dob;
+
+    @Column(name="doj")
+    private Date doj;
+
+    @Min(message= "Minimum grade should be >1", value=1)
+    @Max(message= "Maximum grade should be 10", value=10)
+    @Column(name="grade")
+    private Integer grade;
+
+    @Column(name="phone")
+    private String phone;
+
+
+    @Transient
+    @NotBlank(message = "DOB shouldn't be blank")
+    private String dobStr;
+    @Transient
+    @NotBlank(message = "DOJ shouldn't be blank")
+    private String dojStr;
 
 }
