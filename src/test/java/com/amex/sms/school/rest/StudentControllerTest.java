@@ -1,6 +1,6 @@
-/*
 package com.amex.sms.school.rest;
 
+import com.amex.sms.school.rest.StudentController;
 import com.amex.sms.school.student.entity.Student;
 import com.amex.sms.school.student.service.StudentServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -15,41 +15,31 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-*/
 /**
- * @author Mayukha
- * Created on 09 Nov, 2023
+ * @author sateesh.gullipalli
  * @project school
- *//*
-
+ * @created on 07 Nov, 2023
+ */
 @ExtendWith(MockitoExtension.class)
 class StudentControllerTest {
 
     @Mock
-    StudentServiceImpl studentService;
+    private StudentServiceImpl studentService;
 
     @InjectMocks
-    StudentController studentController;
-
-
+    private StudentController studentController;
 
     @Test
     void getAllP() {
-
     }
 
-
-
-    @Test
+    //@Test
     void getAll() {
-        List<Student> list= new ArrayList<>();
-        for(int i=0;i<10;i++)
-        {
-            list.add(new Student(i,"name"+i,"email"+i+"@aexp.com",null));
-        }
+        List<Student> list = new ArrayList<>();
+        //list.add(new Student(101, "sateesh", "sateesh@gmail.com"));
+
         when(studentService.getAll()).thenReturn(list);
-        List<Student> response = studentController.getAll(null);
-        assertEquals(list,response);
+        //assertEquals(list, studentController.getAll(null));
     }
 
     @Test
@@ -62,34 +52,13 @@ class StudentControllerTest {
 
     @Test
     void create() {
-        Student student= new Student(101,"Sai","Sai@aexp.com", null);
-        when(studentService.create(student)).thenReturn(student);
-        Student response = studentController.create(student, null).getBody();
-        assertEquals(student,response);
-
     }
 
-    */
-/*@Test
-    /*void update(int id) {
-        Student student= new Student(105,"Sai5","Sai5@aexp.com");
-        when(studentService.create(student)).thenReturn(student);
-        Student response = studentController.update(int id, Student student);
-        assertEquals(student,response);
+    @Test
+    void update() {
     }
-    //public Student update(int id, Student student) {
-    //       student.setId(id);
-    //       if(studentRepository.existsById(id)) {
-    //           return studentRepository.save(student);
-    //       }
-    //        throw new NotFoundException("Student with  ID : "+id +"is not found");
-    //    }
 
     @Test
     void delete() {
-    }*//*
-
-
-
+    }
 }
-*/
