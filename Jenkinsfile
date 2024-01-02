@@ -26,6 +26,13 @@ try{
             credentialsId: 'school-user',
             branch: 'main'
      }
+     stage('Test'){
+        steps{
+            sh './jenkins_build.sh'
+            junit '*/build/test-results/*.xml'
+            step([$class: 'JacocoPublisher'])
+        }
+     }
     stage('Build docker') {
          dockerImage = docker.build("school-app:${env.BUILD_NUMBER}")
     }
