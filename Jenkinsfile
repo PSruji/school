@@ -37,11 +37,11 @@ try{
     stage('Build docker') {
          dockerImage = docker.build("school-app:${env.BUILD_NUMBER}")
     }
-    /* stage('Deploy docker'){
+     stage('Deploy docker'){
           echo "Docker Image Tag Name: ${dockerImageTag}"
           bat "docker stop school-app || (exit 0) && docker rm school-app || (exit 0)"
           bat "docker run --name school-app -d -p 8080:8080 school-app:${env.BUILD_NUMBER}"
-    } */
+    } 
 }catch(e){
     currentBuild.result = "FAILED"
     throw e
