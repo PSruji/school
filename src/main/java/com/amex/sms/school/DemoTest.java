@@ -2,12 +2,9 @@ package com.amex.sms.school;
 
 import com.amex.sms.school.student.entity.Student;
 import org.springframework.http.*;
-import org.springframework.http.client.ClientHttpResponse;
-import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -20,7 +17,7 @@ import java.util.Arrays;
 
 public class DemoTest {
 
-    public static void main(String a[]){
+    public static void main(String[] a){
         int i = 128;
         byte b = (byte)i;
         System.out.println(b);

@@ -42,7 +42,7 @@ public class Calculator {
         if(a<b){
             throw new RuntimeException("a cannot be less than b");
         }
-        return a/b;
+        return (double)a/b;
     }
 
 
